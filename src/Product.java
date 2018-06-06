@@ -1,24 +1,57 @@
+package money2;
 
 public class Product {
-	private String nameProduct;
-	private Float priceProduct;
-	private Integer quantityProduct;
-	
-	public Product(String name, Float price, Integer quantity) {
-		this.nameProduct = name;
-		this.priceProduct = price;
-		this.quantityProduct = quantity;
+	private String productName;
+	private String productDescription;
+	private double price;
+	private Integer amount;
+
+	public Product(String productName, String productDescription, double price, Integer amount) {
+		super();
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.price = price;
+		this.amount = amount;
 	}
-	
+
+	public Product(String productName, String productDescription, double price) {
+		super();
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.price = price;
+		this.amount = 1;
+	}
+
 	public String getProductName() {
-		return nameProduct;
+		return productName;
 	}
-	
-	public Float getProductPrice() {
-		return priceProduct;
+
+	public void updateProductName(String productName) {
+		this.productName = productName;
 	}
-	
-	public Integer getProductQuantity() {
-		return quantityProduct;
+
+	public double getPrice() {
+		return price;
 	}
+
+	public void updatePrice(double price) {
+		this.price = price;
+	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void updateProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void updateAmount(Integer amount) {
+		this.amount = amount;
+	}
+
 }
