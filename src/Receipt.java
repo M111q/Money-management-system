@@ -5,31 +5,33 @@ import java.util.Date;
 import java.util.List;
 
 
-public class Receipt {
-	private String shopName;
+
+public class Receipt implements Cloneable{
+	private Shop shop;
 	// private Date dateTime = new Date();
 	//                     private Product product;
 
 	private List<Product> productList;
 	private double total;
 
-	public Receipt(String shopName, List<Product> productList) {
+	public Receipt(Shop shop, List<Product> productList) {
 		super();
-		this.shopName = shopName;
+		this.shop = shop;
 		this.productList = productList;
 	}
 
-	public String getShopName() {
-		return shopName;
-	}
-
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
-	}
 	/*
 	 * public Date getDateTime() { return dateTime; } public void setDateTime(Date
 	 * dateTime) { this.dateTime = dateTime; }
 	 */
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
 
 	public void addProduct(Product product) {
 		productList.add(product);
@@ -55,25 +57,29 @@ public class Receipt {
 	}
 
 	public void showReceipt() {
-		System.out.println("Paragon ze sklepu " + this.getShopName());
+		System.out.println("Paragon ze sklepu " + shop.getShopName());
 		this.getProducts();
 		//System.out.println(paragon.getProductList().get(0).getProductName());
 		System.out.println("suma laczna: " + this.getTotal() + "zl");
 		
 	}
-	/*
+	
 	@Override
     public Object clone() throws CloneNotSupportedException {
-    	Receipt paragon = new Receipt();
+		Shop shop = (Shop) this.getShop().clone();
+		List<Product> temp = new ArrayList();
+		for(Product element : this.getProductList()){
+			temp.add(element);
+		}
+		
+    	Receipt paragon = new Receipt(shop, temp);
     	
-        Odcinek odcinekA = (Odcinek) this.getA().clone();
-        Odcinek odcinekB = (Odcinek) this.getB().clone();
-        Odcinek odcinekC = (Odcinek) this.getC().clone();
-        trojkat.setA(odcinekA);
-        trojkat.setB(odcinekB);
-        trojkat.setC(odcinekC);
+       
+       // Odcinek odcinekC = (Odcinek) this.getC().clone();
+        paragon.setShop(shop);
+        //trojkat.setB(odcinekB);
 
-        return trojkat;
+        return paragon;
     }
-	*/
+	
 }

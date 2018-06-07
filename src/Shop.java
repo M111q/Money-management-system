@@ -1,6 +1,6 @@
 package money2;
 
-public class Shop {
+public class Shop implements Cloneable {
 	private String shopName;
 	private String address;
 	public String getShopName() {
@@ -20,5 +20,12 @@ public class Shop {
 		this.shopName = shopName;
 		this.address = address;
 	}
-	
+	public Shop(String shopName) {
+		super();
+		this.shopName = shopName;
+	}
+	 @Override
+	    public Object clone() throws CloneNotSupportedException {
+	        return super.clone();
+	    }
 }
