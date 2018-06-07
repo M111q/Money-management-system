@@ -20,7 +20,7 @@ public class Main {
 		List<Product> productList = new ArrayList();
 		Receipt paragon = new Receipt(nazwaSklepu, productList);
 		Wallet wallet = new Wallet(100);
-		
+		ProductCategory category = new ProductCategory("jedzenie");
 			
 		
 		
@@ -47,8 +47,9 @@ public class Main {
 				String opis = odczyt.nextLine();
 				System.out.println("Podaj ilosc sztuk");
 				Integer ilosc = odczyt.nextInt();
+				System.out.println("");
 				
-				Product mojProdukt = new Product(nazwa, opis, cena, ilosc);
+				Product mojProdukt = new Product(nazwa, opis, cena, ilosc, category);//narazie na sztywno kategoria
 				paragon.addProduct(mojProdukt);
 				//productList.add(mojProdukt);
 				

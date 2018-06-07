@@ -40,7 +40,7 @@ public class Receipt {
 	
 	public void getProducts() {
 		for (Product element : productList) {
-			System.out.println(element.getProductName() +" - "+ element.getProductDescription() +" -  "+ element.getPrice() + "zl ilosc sztuk: " + element.getAmount());
+			System.out.println(element.getProductName() +" - "+ element.getProductDescription() +" -  "+ element.getPrice() + "zl ilosc sztuk: " + element.getAmount() + " kategoria: " + element.getCategory());//jakis toostring?
 		}
 	}
 	//smiglo
@@ -52,4 +52,6 @@ public class Receipt {
 		}
 		return total;
 	}
+	
+	
 }

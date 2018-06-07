@@ -5,13 +5,24 @@ public class Product {
 	private String productDescription;
 	private double price;
 	private Integer amount;
+	private ProductCategory category;
 
+	public Product(String productName, String productDescription, double price, Integer amount, ProductCategory category) {
+		super();
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.price = price;
+		this.amount = amount;
+		this.category = category;
+	}
+	
 	public Product(String productName, String productDescription, double price, Integer amount) {
 		super();
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.price = price;
 		this.amount = amount;
+		//defaultowa kategoria ustawic
 	}
 
 	public Product(String productName, String productDescription, double price) {
@@ -52,6 +63,14 @@ public class Product {
 
 	public void updateAmount(Integer amount) {
 		this.amount = amount;
+	}
+
+	public String getCategory() {
+		return category.getCategoryName();
+	}
+
+	public void setCategory(String categoryName) {
+		this.category = new ProductCategory(categoryName);
 	}
 
 }
