@@ -40,7 +40,7 @@ public class Receipt {
 	
 	public void getProducts() {
 		for (Product element : productList) {
-			System.out.println(element.getProductName() +" - "+ element.getProductDescription() +" -  "+ element.getPrice() + "zl ilosc sztuk: " + element.getAmount() + " kategoria: " + element.getCategory());//jakis toostring?
+			System.out.println(element.getProductName() +" - "+ element.getProductDescription() +" -  "+ element.getPrice() + "zl ilosc sztuk: " + element.getAmount() + ", kategoria: " + element.getCategory());//jakis toostring?
 		}
 	}
 	//smiglo
@@ -51,6 +51,14 @@ public class Receipt {
 		    total = total + element.getPrice() * element.getAmount();
 		}
 		return total;
+	}
+
+	public void showReceipt() {
+		System.out.println("Paragon ze sklepu " + this.getShopName());
+		this.getProducts();
+		//System.out.println(paragon.getProductList().get(0).getProductName());
+		System.out.println("suma laczna: " + this.getTotal() + "zl");
+		
 	}
 	
 	
