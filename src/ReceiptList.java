@@ -24,8 +24,13 @@ public class ReceiptList {//moze singleton?
 		return listaParagonow;
 	}
 	public void getReceiptsFromList() {//dodac numeracje wyswietlanych par i jesli null
+		int licznik = 1;
 		for (Receipt element : listaParagonow) {
+			System.out.println("###########Start#############");
+			System.out.println("Paragon nr: " + licznik);
 			element.showReceipt();//jakis toostring?
+			licznik = licznik + 1;
+			System.out.println();
 		}
 	}
 	

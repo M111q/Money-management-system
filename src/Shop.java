@@ -1,25 +1,24 @@
+package money2;
 
 public class Shop {
-	private String nameShop;
-	private String addressShop;
-	private String typeShop;
-	
-	public Shop(String name, String address, String type) {
-		this.nameShop = name;
-		this.addressShop = address;
-		this.typeShop = type;
+	private String shopName;
+	private String address;
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public Shop(String shopName, String address) {
+		super();
+		this.shopName = shopName;
+		this.address = address;
 	}
 	
-	public String getNameShop() {
-		return nameShop;
-	}
-	
-	public String getAddressShop() {
-		return addressShop;
-	}
-	
-	public String getTypeShop() {
-		return typeShop;
-	}
 }
-//czy sklep ma produkty

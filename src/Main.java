@@ -5,7 +5,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 //todo walidacja
-//dod kategorii
 //ul menu
 
 public class Main {
@@ -25,11 +24,12 @@ public class Main {
 		
 		
 		while(true) {
-			System.out.println("Wybierz: 1. Dodaj nowy paragon, 2.  Wyswietl stan portfela, 3. Pokaz paragony");
+			System.out.println("Wybierz: 1. Dodaj nowy paragon, 2.  Wyswietl stan portfela, 3. Pokaz paragony 4. Dodaj nowy paragon na podstawie zapisanego");
 			option= Integer.parseInt(odczyt.next());
 			odczyt.nextLine();
 			if(option == 1) {
 //				System.out.println("Utworzenie nowego paragonu");
+				
 				System.out.println("Podaj nazwe sklepu");
 				String nazwaSklepu = odczyt.nextLine();
 				List<Product> productList = new ArrayList();
@@ -65,7 +65,7 @@ public class Main {
 						Integer ilosc = odczyt.nextInt();
 						System.out.println("");
 						
-						Product mojProdukt = new Product(nazwa, opis, cena, ilosc, category);//narazie na sztywno kategoria
+						Product mojProdukt = new Product(nazwa, opis, cena, ilosc, category);
 						paragon.addProduct(mojProdukt);
 						//productList.add(mojProdukt);
 						
@@ -86,6 +86,17 @@ public class Main {
 				System.out.println("kasa w portfelu wynosi: "+ wallet.getMoney());
 			}else if(option == 3) {//wyswietlanie paragonow
 				listaParagonow.getReceiptsFromList();
+			}else if(option == 4) {//
+				while(true) {
+					System.out.println("Wybierz paragon do skopiowania wpisujac jego numer");//mozliwosc anulowania? jesli puste komunikat
+					listaParagonow.getReceiptsFromList();//wysiwtla liste
+					option= Integer.parseInt(odczyt.next());
+					if(option == 1) {
+						
+					}
+				}
+				
+				
 			}
 			else {
 				break;

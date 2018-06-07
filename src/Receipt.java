@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class Receipt {
 	private String shopName;
 	// private Date dateTime = new Date();
@@ -60,6 +61,19 @@ public class Receipt {
 		System.out.println("suma laczna: " + this.getTotal() + "zl");
 		
 	}
-	
-	
+	/*
+	@Override
+    public Object clone() throws CloneNotSupportedException {
+    	Receipt paragon = new Receipt();
+    	
+        Odcinek odcinekA = (Odcinek) this.getA().clone();
+        Odcinek odcinekB = (Odcinek) this.getB().clone();
+        Odcinek odcinekC = (Odcinek) this.getC().clone();
+        trojkat.setA(odcinekA);
+        trojkat.setB(odcinekB);
+        trojkat.setC(odcinekC);
+
+        return trojkat;
+    }
+	*/
 }
