@@ -12,7 +12,7 @@ public class Receipt implements Cloneable, Subject{
 	//                     private Product product;
 
 	private List<Product> productList;
-	
+	private int id;
 	private double total;
 	//private List<Observer> observers;
 	private List<Observer> observers;
@@ -26,6 +26,13 @@ public class Receipt implements Cloneable, Subject{
 		this.productList = productList;
 		this.observer = observer;
 	}*/
+	public Receipt(int id, Shop shop, List<Product> productList) {
+		super();
+		this.id = id;
+		this.shop = shop;
+		this.productList = productList;
+		this.observers=new ArrayList<>();
+	}
 	public Receipt(Shop shop, List<Product> productList) {
 		super();
 		this.shop = shop;
@@ -69,7 +76,7 @@ public class Receipt implements Cloneable, Subject{
 	}
 
 	public void showReceipt() {
-		System.out.println("Paragon ze sklepu " + shop.getShopName());
+		System.out.println("Paragon nr "+ this.getId() +" ze sklepu " + shop.getShopName());
 		this.getProducts();
 		//System.out.println(paragon.getProductList().get(0).getProductName());
 		System.out.println("suma laczna: " + this.getTotal() + "zl");
@@ -136,5 +143,12 @@ public class Receipt implements Cloneable, Subject{
 		this.changed=true;
 		notifyObservers();
 	}
+	public void setId(int licznik) {
+		this.id = licznik;
+	}
+	public int getId() {
+		return id;
+	}
+	
 
 }

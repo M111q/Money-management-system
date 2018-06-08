@@ -8,12 +8,15 @@ import java.util.Scanner;
 //todo walidacja
 //ulepsz menu
 //edycja paragonu usuwanie/zmiana produktu
+//jak edytuje ale nie dodam nic nowego nie powinno aktualizowac
+//dodac indeksy do paragon1 paragon2...
 public class Main {
 
 	public static void main(String[] args) throws CloneNotSupportedException {
 		Scanner odczyt = new Scanner(System.in);
 		int option;
 		double cena = 0;
+		int licznik = 0;
 		System.out.println("Start programu");
 		ReceiptList listaParagonow = new ReceiptList();
 
@@ -34,14 +37,15 @@ public class Main {
 				String nazwaSklepu = odczyt.nextLine();
 				Shop sklep = new Shop(nazwaSklepu);
 				List<Product> productList = new ArrayList();
+				licznik = licznik + 1;
 				//Receipt paragon = new Receipt(sklep, productList, wallet);
-				Receipt paragon = new Receipt(sklep, productList);
+				Receipt paragon = new Receipt(licznik, sklep, productList);
 				paragon.register(wallet);
 				wallet.setSubject(paragon);
 				//paragon.register(wallet);
 				listaParagonow.addReceiptToList(paragon);
 				//paragon.postMessage();
-				wallet.update();
+				//wallet.update();
 			//za kazdym razem jak tworze paragon musze go dodac do listy obserowanych subjectow
 				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				while (true) {
@@ -96,17 +100,20 @@ public class Main {
 
 			} else if (option == 2) {
 				// wallet.spentMoney(paragon.getTotal());//poprawic
-				System.out.println("kasa w portfelu wynosi: " + wallet.getMoney());
+				System.out.println("kasa w portfelu wynosi: " + wallet.getRealMoney());
 			} else if (option == 3) {// wyswietlanie paragonow
 				listaParagonow.getReceiptsFromList();
-			} else if (option == 4) {//
+			} else if (option == 4) {// shallow copy
 
 				System.out.println("Wybierz paragon do skopiowania wpisujac jego numer");// mozliwosc anulowania? jesli
 																							// puste komunikat
 				listaParagonow.getReceiptsFromList();// wysiwtla liste
 				int wybranyNr = Integer.parseInt(odczyt.next());
 				Receipt paragonClone = (Receipt) listaParagonow.getOneReceiptFromList(wybranyNr).clone();
+				licznik = licznik + 1;
+				paragonClone.setId(licznik);
 				listaParagonow.addReceiptToList(paragonClone);
+				wallet.setSubject(paragonClone);
 				// paragonClone.showReceipt();
 
 				// if(option == 1) {
@@ -149,11 +156,13 @@ public class Main {
 					} else if (option == 2) {
 						paragonClone.showReceipt();
 						// wallet.spentMoney(2);
-					} else if (option == 3)
+					} else if (option == 3) {
+						paragonClone.postMessage(paragonClone.getTotal());
 						break;
-				}
+					}
+				}//wywala z petli
 			} else if (option == 5) {
-				System.out.println("Wybierz paragon do eycji wpisujac jego numer");// mozliwosc anulowania? jesli
+				System.out.println("Wybierz paragon do edycji wpisujac jego numer");// mozliwosc anulowania? jesli
 																							// puste komunikat
 				listaParagonow.getReceiptsFromList();// wysiwtla liste paragonow
 				int wybranyNr = Integer.parseInt(odczyt.next());
@@ -193,10 +202,12 @@ public class Main {
 						// productList.add(mojProdukt);
 
 					} else if (option == 2) {
-						paragonToEdit.showReceipt();
+						paragonToEdit.showReceipt();//wychodzi z petli nie wiem czemu
 						// wallet.spentMoney(2);
-					} else if (option == 3)
+					} else if (option == 3) {
+						paragonToEdit.postMessage(paragonToEdit.getTotal());
 						break;
+					}
 				}
 				
 				

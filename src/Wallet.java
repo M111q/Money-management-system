@@ -1,15 +1,26 @@
 package money2;
 
+import java.util.ArrayList;
 import java.util.List;
-
+//obiazenie konta
 public class Wallet implements Observer {
 	private double money;
-	private Subject topic;//kilka subjec powinno byc?
+	private double expenses; //wydatki
+	/////////private Subject topic;//kilka subjec powinno byc?
+	private List<Subject> subjects;
+	private double realMoney;
 	//private final Object MUTEX= new Object();
 	//private List<Subject> subjects;
 	public Wallet(double money) {
 		super();
 		this.money = money;
+		this.subjects = new ArrayList<>();//przy tworzenie portfela tworzy lsite obserwowanych tematow
+	}
+
+	public double getRealMoney() {
+		update();
+		realMoney = money - expenses;
+		return realMoney;
 	}
 
 	public double getMoney() {
@@ -19,23 +30,38 @@ public class Wallet implements Observer {
 	public void setMoney(double money) {
 		this.money = money;
 	}
-	public void spentMoney(double money) {
-		this.money = this.money - money;
-	}
+	//public void spentMoney(double money) {
+	//	this.money = this.money - money;
+	//}
 	
 	@Override
 	public void update() {
-		double msg = (double) topic.getUpdate(this);
-		if(msg == 0){
-			System.out.println("Brak zmian w portfelu");
-		}else
-		this.spentMoney(msg);
-		System.out.println("Uaktualniono portfel o: "+msg + "zl");
+		expenses = 0;
+		for (Subject sub : subjects) {//petla przelatuje po wszystkich zapisanych paragonach i odczytuje total
+			
+			double msg = (double) sub.getUpdate(this);
+			if(msg == 0){
+				System.out.println("Brak zmian w portfelu");
+			}else {
+		//this.spentMoney(msg);
+				this.updateExpenses(msg);
+				System.out.println("Uaktualniono portfel o: "+msg + "zl");
+		}
+		}
+	}
+
+	public double getExpenses() {
+		return expenses;
+	}
+
+	public void updateExpenses(double expenses) {
+		this.expenses = this.expenses + expenses;
 	}
 
 	@Override
 	public void setSubject(Subject sub) {
-		this.topic=sub;//u mnie musi byc lista
+		this.subjects.add(sub);
+		/////this.topic=sub;//u mnie musi byc lista
 	}
 
 /*
