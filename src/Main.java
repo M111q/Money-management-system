@@ -22,9 +22,16 @@ public class Main {
 
 		// List<Product> productList = new ArrayList();
 
-		Wallet wallet = new Wallet(100);
+
+	        
+		   
+		   
+		Wallet wallet = Wallet.getInstance();
 		// ProductCategory category = new ProductCategory("jedzenie");
 
+        
+     
+        
 		while (true) {
 			System.out.println(
 					"Wybierz: 1. Dodaj nowy paragon, 2.  Wyswietl stan portfela, 3. Pokaz paragony, 4. Dodaj nowy paragon na podstawie zapisanego, 5. Edycja paragonu");
@@ -32,7 +39,6 @@ public class Main {
 			odczyt.nextLine();
 			if (option == 1) {
 				// System.out.println("Utworzenie nowego paragonu");
-
 				System.out.println("Podaj nazwe sklepu");
 				String nazwaSklepu = odczyt.nextLine();
 				Shop sklep = new Shop(nazwaSklepu);
@@ -40,10 +46,66 @@ public class Main {
 				licznik = licznik + 1;
 				//Receipt paragon = new Receipt(sklep, productList, wallet);
 				Receipt paragon = new Receipt(licznik, sklep, productList);
+				
+					System.out.println(
+							"Wybierz: 1. Dodaj nowy zwykly paragon, 2.  Dodaj nowa fakture");
+					option = Integer.parseInt(odczyt.next());
+					odczyt.nextLine();
+					switch(option) {
+					case 2: System.out.println("Podaj NIP");
+						int nip = Integer.parseInt(odczyt.next());
+						odczyt.nextLine();
+
+					//Receipt paragon = new Receipt(sklep, productList, wallet);
+					//Receipt paragon = new Receipt(licznik, sklep, productList);
+					
+						ReceiptInterfaceDekorator dekorowanyParagon = new ReceiptFaktura(new Receipt(sklep, productList), nip);
+					//dekorowanyParagon
+						System.out.println(dekorowanyParagon.pobierzOpis());
+						dekorowanyParagon.register(wallet);
+						wallet.setSubject(dekorowanyParagon);
+						//stworzyc liste faktur?
+						//listaParagonow.addReceiptToList(dekorowanyParagon);
+						//break;
+						////////zmienic listaParagonow.addReceiptToList(dekorowanyParagon);
+						//paragon = (Receipt) dekorowanyParagon;////////////////
+					case 1: paragon.register(wallet);
+					wallet.setSubject(paragon);
+					//paragon.register(wallet);
+					listaParagonow.addReceiptToList(paragon);
+					break;
+					/*
+					if (option == 2) {
+						
+						System.out.println("Podaj NIP");
+						int nip = Integer.parseInt(odczyt.next());
+						odczyt.nextLine();
+	
+						//Receipt paragon = new Receipt(sklep, productList, wallet);
+						//Receipt paragon = new Receipt(licznik, sklep, productList);
+						
+						ReceiptInterfaceDekorator dekorowanyParagon = new ReceiptFaktura(new Receipt(sklep, productList), nip);
+						//dekorowanyParagon
+						System.out.println(dekorowanyParagon.pobierzOpis());
+						paragon = (Receipt) dekorowanyParagon;////////////////
+						
+					}else {
+						
 				paragon.register(wallet);
 				wallet.setSubject(paragon);
 				//paragon.register(wallet);
 				listaParagonow.addReceiptToList(paragon);
+				*/
+				
+					}
+				
+				
+				
+				//////////////////////////////////////////////////////////
+				
+				 
+				 
+				
 				//paragon.postMessage();
 				//wallet.update();
 			//za kazdym razem jak tworze paragon musze go dodac do listy obserowanych subjectow
@@ -160,7 +222,7 @@ public class Main {
 						paragonClone.postMessage(paragonClone.getTotal());
 						break;
 					}
-				}//wywala z petli
+				}
 			} else if (option == 5) {
 				System.out.println("Wybierz paragon do edycji wpisujac jego numer");// mozliwosc anulowania? jesli
 																							// puste komunikat
@@ -228,5 +290,7 @@ public class Main {
 		}
 		odczyt.close();
 
+		
+		
 	}
 }

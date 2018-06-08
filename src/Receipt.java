@@ -6,7 +6,7 @@ import java.util.List;
 
 
 
-public class Receipt implements Cloneable, Subject{
+public class Receipt implements Cloneable, Subject, ReceiptInterfaceDekorator{
 	private Shop shop;
 	// private Date dateTime = new Date();
 	//                     private Product product;
@@ -137,6 +137,7 @@ public class Receipt implements Cloneable, Subject{
 	}
 	
 	//method to post message to the topic
+	@Override
 	public void postMessage(double msg){
 		System.out.println("Message Posted to Topic:"+msg);
 		this.message=msg;
@@ -148,6 +149,11 @@ public class Receipt implements Cloneable, Subject{
 	}
 	public int getId() {
 		return id;
+	}
+	@Override
+	public String pobierzOpis() {
+		// TODO Auto-generated method stub
+		return "zwykly paragon";
 	}
 	
 

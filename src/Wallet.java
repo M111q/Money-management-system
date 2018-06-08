@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 //obiazenie konta
 public class Wallet implements Observer {
+	//private static Wallet wallet = new Wallet(100);
+	private static Wallet instance;
 	private double money;
 	private double expenses; //wydatki
 	/////////private Subject topic;//kilka subjec powinno byc?
@@ -11,12 +13,22 @@ public class Wallet implements Observer {
 	private double realMoney;
 	//private final Object MUTEX= new Object();
 	//private List<Subject> subjects;
-	public Wallet(double money) {
+	private Wallet(double money) {
 		super();
 		this.money = money;
 		this.subjects = new ArrayList<>();//przy tworzenie portfela tworzy lsite obserwowanych tematow
 	}
-
+	public static synchronized Wallet getInstance( ) {
+		if(instance == null){
+	        synchronized (Wallet.class) {
+	            if(instance == null){
+	                instance = new Wallet(100);
+	            }
+	        }
+	    }
+	    return instance;
+	}
+	
 	public double getRealMoney() {
 		update();
 		realMoney = money - expenses;
@@ -63,6 +75,7 @@ public class Wallet implements Observer {
 		this.subjects.add(sub);
 		/////this.topic=sub;//u mnie musi byc lista
 	}
+
 
 /*
 	@Override

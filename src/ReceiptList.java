@@ -16,6 +16,7 @@ public class ReceiptList {//moze singleton?
 		listaParagonow.add(paragon);
 		
 	}
+
 	public ReceiptList() {
 		super();
 		listaParagonow = new ArrayList();
@@ -27,9 +28,8 @@ public class ReceiptList {//moze singleton?
 		//int licznik = 0;
 		for (Receipt element : listaParagonow) {
 			System.out.println("###########Start#############");
-			System.out.println("Paragon nr: " + element.getId());
-			element.showReceipt();//jakis toostring?
-			//licznik = licznik + 1;
+			System.out.println("Paragon nr: " + element.getId()); //+ element.);
+			element.showReceipt();
 			System.out.println();
 		}
 	}

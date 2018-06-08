@@ -7,4 +7,5 @@ public interface Observer {
 	
 	//attach with subject to observe
 	public void setSubject(Subject sub);
+	
 }
