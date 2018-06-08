@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 //todo walidacja
 //ulepsz menu
-//edycja paragonu opcja
+//edycja paragonu usuwanie/zmiana produktu
 public class Main {
 
 	public static void main(String[] args) throws CloneNotSupportedException {
@@ -34,8 +34,15 @@ public class Main {
 				String nazwaSklepu = odczyt.nextLine();
 				Shop sklep = new Shop(nazwaSklepu);
 				List<Product> productList = new ArrayList();
+				//Receipt paragon = new Receipt(sklep, productList, wallet);
 				Receipt paragon = new Receipt(sklep, productList);
+				paragon.register(wallet);
+				wallet.setSubject(paragon);
+				//paragon.register(wallet);
 				listaParagonow.addReceiptToList(paragon);
+				//paragon.postMessage();
+				wallet.update();
+			//za kazdym razem jak tworze paragon musze go dodac do listy obserowanych subjectow
 				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				while (true) {
 					System.out.println(
@@ -74,8 +81,15 @@ public class Main {
 					} else if (option == 2) {
 						paragon.showReceipt();
 						// wallet.spentMoney(2);
-					} else if (option == 3)
-						break;
+					} else if (option == 3) {
+						//paragon.postMessage();
+						//System.out.println("napisz wiadomosc");
+						//odczyt.nextLine();
+						//String test = odczyt.nextLine();
+						//paragon.postMessage(test);
+						paragon.postMessage(paragon.getTotal());
+						break;//(paragon.getTotal());
+					}
 				}
 
 				/////////////////////////////////////////////////////////////////////
