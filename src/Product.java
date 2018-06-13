@@ -22,7 +22,6 @@ public class Product {
 		this.productDescription = productDescription;
 		this.price = price;
 		this.amount = amount;
-		//defaultowa kategoria ustawic
 	}
 
 	public Product(String productName, String productDescription, double price) {
